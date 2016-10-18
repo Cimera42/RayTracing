@@ -1,0 +1,497 @@
+# depslib dependency file v1.0
+1476777482 source:c:\users\tim\documents\coding\c++\projects\raytest\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<glm/glm.hpp>
+	<vector>
+	<stb_image_write.h>
+	<utility>
+	<CL/opencl.h>
+	<sstream>
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\glm.hpp
+	"detail/_fixes.hpp"
+	<cmath>
+	<climits>
+	<cfloat>
+	<limits>
+	<cassert>
+	"fwd.hpp"
+	"vec2.hpp"
+	"vec3.hpp"
+	"vec4.hpp"
+	"mat2x2.hpp"
+	"mat2x3.hpp"
+	"mat2x4.hpp"
+	"mat3x2.hpp"
+	"mat3x3.hpp"
+	"mat3x4.hpp"
+	"mat4x2.hpp"
+	"mat4x3.hpp"
+	"mat4x4.hpp"
+	"trigonometric.hpp"
+	"exponential.hpp"
+	"common.hpp"
+	"packing.hpp"
+	"geometric.hpp"
+	"matrix.hpp"
+	"vector_relational.hpp"
+	"integer.hpp"
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\_fixes.hpp
+	<cmath>
+
+1438468536 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\fwd.hpp
+	"detail/type_int.hpp"
+	"detail/type_float.hpp"
+	"detail/type_vec.hpp"
+	"detail/type_mat.hpp"
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_int.hpp
+	"setup.hpp"
+	<type_traits>
+	<cstdint>
+
+1458396418 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\setup.hpp
+	<cassert>
+	<cstddef>
+	<cuda.h>
+	<intrin.h>
+	<immintrin.h>
+	<immintrin.h>
+	<smmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+	<__config>
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_float.hpp
+	"setup.hpp"
+
+1438468703 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_vec.hpp
+	"precision.hpp"
+	"type_int.hpp"
+
+1457816885 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\precision.hpp
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_mat.hpp
+	"precision.hpp"
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\vec2.hpp
+	"detail/type_vec2.hpp"
+
+1458396381 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_vec2.hpp
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec2.inl"
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\_swizzle.hpp
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\_swizzle_func.hpp
+
+1458396381 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_vec2.inl
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\vec3.hpp
+	"detail/type_vec3.hpp"
+
+1458396381 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_vec3.hpp
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec3.inl"
+
+1458396381 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_vec3.inl
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\vec4.hpp
+	"detail/type_vec4.hpp"
+
+1458396418 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_vec4.hpp
+	"setup.hpp"
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec4.inl"
+
+1458396418 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_vec4.inl
+	"type_vec4_sse2.inl"
+	"type_vec4_avx.inl"
+	"type_vec4_avx2.inl"
+
+1441042492 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_vec4_sse2.inl
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_vec4_avx.inl
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_vec4_avx2.inl
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\mat2x2.hpp
+	"detail/type_mat2x2.hpp"
+
+1458396381 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_mat2x2.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat2x2.inl"
+
+1457873225 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_mat2x2.inl
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\mat2x3.hpp
+	"detail/type_mat2x3.hpp"
+
+1458396381 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_mat2x3.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat2x3.inl"
+
+1457873225 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_mat2x3.inl
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\mat2x4.hpp
+	"detail/type_mat2x4.hpp"
+
+1458396418 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_mat2x4.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat2x4.inl"
+
+1458396418 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_mat2x4.inl
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\mat3x2.hpp
+	"detail/type_mat3x2.hpp"
+
+1458396381 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_mat3x2.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat3x2.inl"
+
+1457873032 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_mat3x2.inl
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\mat3x3.hpp
+	"detail/type_mat3x3.hpp"
+
+1458396381 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_mat3x3.hpp
+	"../fwd.hpp"
+	"type_vec3.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat3x3.inl"
+
+1457873032 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_mat3x3.inl
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\mat3x4.hpp
+	"detail/type_mat3x4.hpp"
+
+1458396381 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_mat3x4.hpp
+	"../fwd.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat3x4.inl"
+
+1457873031 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_mat3x4.inl
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\mat4x2.hpp
+	"detail/type_mat4x2.hpp"
+
+1458396381 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_mat4x2.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat4x2.inl"
+
+1458396381 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_mat4x2.inl
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\mat4x3.hpp
+	"detail/type_mat4x3.hpp"
+
+1458396381 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_mat4x3.hpp
+	"../fwd.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat4x3.inl"
+
+1457873031 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_mat4x3.inl
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\mat4x4.hpp
+	"detail/type_mat4x4.hpp"
+
+1458396418 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_mat4x4.hpp
+	"../fwd.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat4x4.inl"
+
+1457873043 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_mat4x4.inl
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\trigonometric.hpp
+	"detail/func_trigonometric.hpp"
+
+1441055437 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\func_trigonometric.hpp
+	"setup.hpp"
+	"precision.hpp"
+	"func_trigonometric.inl"
+
+1458396381 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\func_trigonometric.inl
+	"_vectorize.hpp"
+	<cmath>
+	<limits>
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\_vectorize.hpp
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+
+1458396381 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_vec1.hpp
+	"../fwd.hpp"
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec1.inl"
+
+1458396381 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_vec1.inl
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\exponential.hpp
+	"detail/func_exponential.hpp"
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\func_exponential.hpp
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	<cmath>
+	"func_exponential.inl"
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\func_exponential.inl
+	"func_vector_relational.hpp"
+	"_vectorize.hpp"
+	<limits>
+	<cmath>
+	<cassert>
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\func_vector_relational.hpp
+	"precision.hpp"
+	"setup.hpp"
+	"func_vector_relational.inl"
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\func_vector_relational.inl
+	<limits>
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\common.hpp
+	"detail/func_common.hpp"
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\func_common.hpp
+	"setup.hpp"
+	"precision.hpp"
+	"type_int.hpp"
+	"_fixes.hpp"
+	"func_common.inl"
+
+1451845234 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\func_common.inl
+	"func_vector_relational.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"_vectorize.hpp"
+	<limits>
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\packing.hpp
+	"detail/func_packing.hpp"
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\func_packing.hpp
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"func_packing.inl"
+
+1437265717 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\func_packing.inl
+	"func_common.hpp"
+	"type_half.hpp"
+	"../fwd.hpp"
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_half.hpp
+	"setup.hpp"
+	"type_half.inl"
+
+1451845614 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\type_half.inl
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\geometric.hpp
+	"detail/func_geometric.hpp"
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\func_geometric.hpp
+	"type_vec3.hpp"
+	"func_geometric.inl"
+
+1458396381 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\func_geometric.inl
+	"func_exponential.hpp"
+	"func_common.hpp"
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"type_float.hpp"
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\matrix.hpp
+	"detail/func_matrix.hpp"
+
+1457221879 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\func_matrix.hpp
+	"../detail/precision.hpp"
+	"../detail/setup.hpp"
+	"../detail/type_mat.hpp"
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../mat2x2.hpp"
+	"../mat2x3.hpp"
+	"../mat2x4.hpp"
+	"../mat3x2.hpp"
+	"../mat3x3.hpp"
+	"../mat3x4.hpp"
+	"../mat4x2.hpp"
+	"../mat4x3.hpp"
+	"../mat4x4.hpp"
+	"func_matrix.inl"
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\func_matrix.inl
+	"../geometric.hpp"
+	<limits>
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\vector_relational.hpp
+	"detail/func_vector_relational.hpp"
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\integer.hpp
+	"detail/func_integer.hpp"
+
+1424017883 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\func_integer.hpp
+	"setup.hpp"
+	"precision.hpp"
+	"func_common.hpp"
+	"func_vector_relational.hpp"
+	"func_integer.inl"
+
+1426538703 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\glm\detail\func_integer.inl
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_int.hpp"
+	"_vectorize.hpp"
+	<intrin.h>
+	<limits>
+
+1476715925 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\stb_image_write.h
+	<stdio.h>
+	<stdarg.h>
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	<assert.h>
+
+1476194255 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\cl\opencl.h
+	<OpenCL/cl.h>
+	<OpenCL/cl_gl.h>
+	<OpenCL/cl_gl_ext.h>
+	<OpenCL/cl_ext.h>
+	<CL/cl.h>
+	<CL/cl_gl.h>
+	<CL/cl_gl_ext.h>
+	<CL/cl_ext.h>
+
+1476772091 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\cl\cl.h
+	<OpenCL/cl_platform.h>
+	<CL/cl_platform.h>
+
+1476194255 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\cl\cl_platform.h
+	<AvailabilityMacros.h>
+	<stdint.h>
+	<stddef.h>
+	<altivec.h>
+	<intrin.h>
+	<xmmintrin.h>
+	<intrin.h>
+	<emmintrin.h>
+	<mmintrin.h>
+	<intrin.h>
+	<immintrin.h>
+
+1476194255 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\cl\cl_gl.h
+	<OpenCL/cl.h>
+	<CL/cl.h>
+
+1476194255 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\cl\cl_gl_ext.h
+	<OpenCL/cl_gl.h>
+	<CL/cl_gl.h>
+
+1476194255 c:\users\tim\documents\coding\c++\projects\raytest\libraries\include\cl\cl_ext.h
+	<OpenCL/cl.h>
+	<AvailabilityMacros.h>
+	<CL/cl.h>
+
+1465950900 c:\program files (x86)\intel\opencl sdk\6.1\include\cl\opencl.h
+	<OpenCL/cl.h>
+	<OpenCL/cl_gl.h>
+	<OpenCL/cl_gl_ext.h>
+	<OpenCL/cl_ext.h>
+	<CL/cl.h>
+	<CL/cl_gl.h>
+	<CL/cl_gl_ext.h>
+	<CL/cl_ext.h>
+
+1465950900 c:\program files (x86)\intel\opencl sdk\6.1\include\cl\cl.h
+	<OpenCL/cl_platform.h>
+	<CL/cl_platform.h>
+
+1465950900 c:\program files (x86)\intel\opencl sdk\6.1\include\cl\cl_platform.h
+	<AvailabilityMacros.h>
+	<stdint.h>
+	<stddef.h>
+	<altivec.h>
+	<intrin.h>
+	<xmmintrin.h>
+	<intrin.h>
+	<emmintrin.h>
+	<mmintrin.h>
+	<intrin.h>
+	<immintrin.h>
+
+1465950900 c:\program files (x86)\intel\opencl sdk\6.1\include\cl\cl_gl.h
+	<OpenCL/cl.h>
+	<CL/cl.h>
+
+1465950900 c:\program files (x86)\intel\opencl sdk\6.1\include\cl\cl_gl_ext.h
+	<OpenCL/cl_gl.h>
+	<CL/cl_gl.h>
+
+1465950900 c:\program files (x86)\intel\opencl sdk\6.1\include\cl\cl_ext.h
+	<OpenCL/cl.h>
+	<AvailabilityMacros.h>
+	<CL/cl.h>
+	<d3d9.h>
+	<dxvahd.h>
+	<wtypes.h>
+	<d3d9types.h>
+
