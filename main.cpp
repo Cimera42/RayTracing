@@ -37,6 +37,23 @@ struct Triangle
         }
         return s;
     }
+
+    std::vector<float> toData()
+    {
+        std::vector<float> vals(9);
+        vals[0] = points[0].x;
+        vals[1] = points[0].y;
+        vals[2] = points[0].z;
+
+        vals[3] = points[1].x;
+        vals[4] = points[1].y;
+        vals[5] = points[1].z;
+
+        vals[6] = points[2].x;
+        vals[7] = points[2].y;
+        vals[8] = points[2].z;
+        return vals;
+    }
 };
 
 struct Ray
@@ -57,94 +74,65 @@ struct Ray
         s += "<" + Convert(dir.x) + ", " + Convert(dir.y) + ", " + Convert(dir.z) + ">\n";
         return s;
     }
+
+    std::vector<float> toData()
+    {
+        std::vector<float> vals(6);
+        vals[0] = start.x;
+        vals[1] = start.y;
+        vals[2] = start.z;
+
+        vals[3] = dir.x;
+        vals[4] = dir.y;
+        vals[5] = dir.z;
+        return vals;
+    }
 };
 
-//Möller–Trumbore intersection algorithm (wikipedia)
-#define EPSILON 0.000001
-float testCollide(Triangle inT, Ray inR, float* outU, float* outV)
-{
-    glm::vec3 edge1, edge2;
-    glm::vec3 P, Q, T;
-    float det, inv_det, u, v;
-    float t;
-
-    edge1 = inT.points[1] - inT.points[0];
-    edge2 = inT.points[2] - inT.points[0];
-
-    P = glm::cross(inR.dir, edge2);
-    det = glm::dot(edge1, P);
-    if(det > -EPSILON && det < EPSILON) return 0;
-    inv_det = 1.0f / det;
-
-    T = inR.start - inT.points[0];
-    u = glm::dot(T,P) * inv_det;
-    if(u < 0.0f || u > 1.0f) return 0;
-
-    Q = glm::cross(T, edge1);
-    v = glm::dot(inR.dir, Q) * inv_det;
-    if(v < 0.0f || u + v > 1.0f) return 0;
-
-    t = glm::dot(edge2, Q) * inv_det;
-
-    if(t > EPSILON)
-    {
-        *outU = u;
-        *outV = v;
-        return t;
-    }
-    return 0;
-}
-
-void genPng()
-{
-    std::vector<Triangle> t;
-    t.push_back(Triangle(glm::vec3(0,1,2),glm::vec3(1,-1,1),glm::vec3(-1,-1,1)));
-    t.push_back(Triangle(glm::vec3(-1,1,2),glm::vec3(1,1,2),glm::vec3(-1 ,0.5,2)));
-    std::cout << t[0].toString() << std::endl;
-
-    int imgSize = 1000;
-    std::vector<char> d(imgSize*imgSize*3);
-    for(int i = 0; i < imgSize; i++)
-    {
-        for(int j = 0; j < imgSize; j++)
-        {
-            float minColl = 1000;
-            float minU;
-            float minV;
-            float pX = -(float)j/imgSize*2+1;
-            float pY = (float)i/imgSize*2-1;
-            glm::vec3 dir = -glm::normalize(glm::vec3(pX,pY,-1));
-            Ray r = Ray(glm::vec3(0,0,0),dir);
-
-            for(int k = 0; k < t.size(); k++)
-            {
-                float u,v;
-                float coll = testCollide(t[k],r,&u,&v);
-
-                if(coll > 0 && coll < minColl)
-                {
-                    minColl = coll;
-                    minU = u;
-                    minV = v;
-                }
-            }
-            if(minColl < 1000)
-            {
-                d[(i*imgSize + j)*3+0] = 255 * (minColl>0)*minU;
-                d[(i*imgSize + j)*3+1] = 255 * (minColl>0)*(1-minU-minV);
-                d[(i*imgSize + j)*3+2] = 255 * (minColl>0)*minV;
-            }
-            else
-            {
-                d[(i*imgSize + j)*3+0] = 0;
-                d[(i*imgSize + j)*3+1] = 0;
-                d[(i*imgSize + j)*3+2] = 0;
-            }
-        }
-    }
-
-    stbi_write_png("img.png", imgSize, imgSize, 3, d.data(), imgSize*3);
-}
+//void genPng()
+//{
+//    std::vector<char> d(imgSize*imgSize*3);
+//    for(int i = 0; i < imgSize; i++)
+//    {
+//        for(int j = 0; j < imgSize; j++)
+//        {
+//            float minColl = 1000;
+//            float minU;
+//            float minV;
+//            float pX = -(float)j/imgSize*2+1;
+//            float pY = (float)i/imgSize*2-1;
+//            glm::vec3 dir = -glm::normalize(glm::vec3(pX,pY,-1));
+//            Ray r = Ray(glm::vec3(0,0,0),dir);
+//
+//            for(int k = 0; k < t.size(); k++)
+//            {
+//                float u,v;
+//                float coll = testCollide(t[k],r,&u,&v);
+//
+//                if(coll > 0 && coll < minColl)
+//                {
+//                    minColl = coll;
+//                    minU = u;
+//                    minV = v;
+//                }
+//            }
+//            if(minColl < 1000)
+//            {
+//                d[(i*imgSize + j)*3+0] = 255 * (minColl>0)*minU;
+//                d[(i*imgSize + j)*3+1] = 255 * (minColl>0)*(1-minU-minV);
+//                d[(i*imgSize + j)*3+2] = 255 * (minColl>0)*minV;
+//            }
+//            else
+//            {
+//                d[(i*imgSize + j)*3+0] = 0;
+//                d[(i*imgSize + j)*3+1] = 0;
+//                d[(i*imgSize + j)*3+2] = 0;
+//            }
+//        }
+//    }
+//
+//    stbi_write_png("img.png", imgSize, imgSize, 3, d.data(), imgSize*3);
+//}
 
 void CheckError (cl_int error)
 {
@@ -159,6 +147,7 @@ int main()
 	std::string src (
 		(std::istreambuf_iterator<char> (in)),
 		std::istreambuf_iterator<char> ());
+    in.close();
 
     cl_uint platformIdCount = 0;
     clGetPlatformIDs(0, NULL, &platformIdCount);
@@ -193,51 +182,90 @@ int main()
     CheckError (clBuildProgram(program, deviceIdCount,
                 deviceIds.data(), NULL, NULL, NULL));
 
-    cl_kernel kernel = clCreateKernel(program, "addTogether", &error);
+    cl_kernel kernel = clCreateKernel(program, "sampleRays", &error);
     CheckError(error);
 
     cl_command_queue command_queue = clCreateCommandQueue(context, deviceIds[0], 0, &error);
 
-    cl_mem memA = clCreateBuffer(context, CL_MEM_READ_WRITE, 10 * sizeof(int), NULL, &error);
+    std::vector<Triangle> tris;
+    tris.push_back(Triangle(glm::vec3(0,1,1),glm::vec3(1,-1,1),glm::vec3(-1,-1,1)));
+    //tris.push_back(Triangle(glm::vec3(-1,1,2),glm::vec3(1,1,2),glm::vec3(-1,0.5,2)));
+    std::vector<float> triData;
+    for(int i = 0; i < tris.size(); i++)
+    {
+        std::vector<float> data = tris[i].toData();
+        triData.insert(triData.end(), data.begin(), data.end());
+    }
+
+    int imgSize = 10;
+    std::vector<Ray> rays;
+    std::vector<float> rayData;
+    for(int i = 0; i < imgSize; i++)
+    {
+        for(int j = 0; j < imgSize; j++)
+        {
+            float pX = (float)j/imgSize*10-5;
+            float pY = (float)i/imgSize*10-5;
+            glm::vec3 p = /*-glm::normalize(*/glm::vec3(pX,pY,0)/*)*/;
+            Ray ray = Ray(p,glm::vec3(0,0,1));
+            rays.push_back(ray);
+
+            std::vector<float> data = ray.toData();
+            rayData.insert(rayData.end(), data.begin(), data.end());
+        }
+    }
+
+    cl_mem memTriangles = clCreateBuffer(context, CL_MEM_READ_WRITE, triData.size() * sizeof(float), NULL, &error);
     CheckError(error);
-    cl_mem memB = clCreateBuffer(context, CL_MEM_READ_WRITE, 10 * sizeof(int), NULL, &error);
+    cl_mem memRays = clCreateBuffer(context, CL_MEM_READ_WRITE, rayData.size() * sizeof(float), NULL, &error);
     CheckError(error);
-    cl_mem memC = clCreateBuffer(context, CL_MEM_READ_WRITE, 10 * sizeof(int), NULL, &error);
+    cl_mem memResults = clCreateBuffer(context, CL_MEM_READ_WRITE, imgSize*imgSize * sizeof(float), NULL, &error);
     CheckError(error);
 
-    int A[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-    int B[] = {0, 1, 2, 0, 1, 2, 0, 1, 2, 0};
-
-    error = clEnqueueWriteBuffer(command_queue, memA, CL_TRUE, 0, sizeof(int)*10, A, 0, NULL, NULL);
+    error = clEnqueueWriteBuffer(command_queue, memTriangles, CL_TRUE, 0, triData.size() * sizeof(float), triData.data(), 0, NULL, NULL);
     CheckError(error);
-    error = clEnqueueWriteBuffer(command_queue, memB, CL_TRUE, 0, sizeof(int)*10, B, 0, NULL, NULL);
+    error = clEnqueueWriteBuffer(command_queue, memRays, CL_TRUE, 0, rayData.size() * sizeof(float), rayData.data(), 0, NULL, NULL);
     CheckError(error);
 
-    error = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void *)&memA);
+    error = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void *)&memTriangles);
     CheckError(error);
-    error = clSetKernelArg(kernel, 1, sizeof(cl_mem), (void *)&memB);
+    error = clSetKernelArg(kernel, 1, sizeof(cl_mem), (void *)&memRays);
     CheckError(error);
-    error = clSetKernelArg(kernel, 2, sizeof(cl_mem), (void *)&memC);
+    error = clSetKernelArg(kernel, 2, sizeof(cl_mem), (void *)&memResults);
     CheckError(error);
 
     error = clEnqueueTask(command_queue, kernel, 0, NULL,NULL);
     CheckError(error);
-    std::size_t offsets[] = {0};
-    std::size_t sizes[] = {10};
-    error = clEnqueueNDRangeKernel(command_queue, kernel, 1, offsets, sizes, NULL,
+    std::size_t offsets[] = {0,0};
+    std::size_t sizes[] = {triData.size(), rayData.size()};
+    std::size_t step[] = {9,6};
+    error = clEnqueueNDRangeKernel(command_queue, kernel, 2, offsets, sizes, step,
                                    0, NULL, NULL);
     CheckError(error);
 
-    int C[10];
-    error = clEnqueueReadBuffer(command_queue, memC, CL_TRUE, 0,
-                                10 * sizeof(int), C, 0, NULL, NULL);
+    float results[imgSize*imgSize];
+    error = clEnqueueReadBuffer(command_queue, memResults, CL_TRUE, 0,
+                                imgSize*imgSize * sizeof(float), results, 0, NULL, NULL);
 
-    for(int i = 0; i < 10; i++)
+    std::vector<char> d(imgSize*imgSize*3);
+    for(int i = 0; i < imgSize*imgSize; i++)
     {
-        std::cout << C[i] << std::endl;
+        if(results[i] > 0)
+        {
+            d[i*3+0] = 255*results[i];
+            d[i*3+1] = 255*results[i];
+            d[i*3+2] = 255*results[i];
+        }
+        else
+        {
+            d[i*3+0] = 0;
+            d[i*3+1] = 0;
+            d[i*3+2] = 0;
+        }
     }
+    stbi_write_png("img.png", imgSize, imgSize, 3, d.data(), imgSize*3);
 
-    genPng();
+	clReleaseContext (context);
 
     return 0;
 }

@@ -34,14 +34,14 @@ float dotVec(vec3 a, vec3 b)
 vec3 crossVec(vec3 a, vec3 b)
 {
     vec3 returnMe;
-    returnMe.x =   a.y*b.z - a.z*b.y;
-    returnMe.y = -(a.x*b.z - a.z*b.x);
-    returnMe.z =   a.x*b.y - a.y*b.x;
+    returnMe.x = a.y*b.z - a.z*b.y;
+    returnMe.y = a.z*b.x - a.x*b.z;
+    returnMe.z = a.x*b.y - a.y*b.x;
     return returnMe;
 }
 
 #define EPSILON 0.000001
-float testCollide(Triangle inT, Ray inR)
+float testCollide(Triangle inT, Ray inR, float *inU, float *inV)
 {
     vec3 edge1, edge2;
     vec3 P, Q, T;
@@ -68,12 +68,74 @@ float testCollide(Triangle inT, Ray inR)
 
     if(t > EPSILON)
     {
+        *inU = u;
+        *inU = v;
+        *inV = v;
         return t;
     }
     return 0;
 }
 
-__kernel void addTogether(__global const float* A, __global const int* B, __global int* C)
+__kernel void sampleRays(__global const float* triangles, __global const float* rays, __global float* results)
 {
-    C[get_global_id(0)] = A[get_global_id(0)] + B[get_global_id(0)];
+    int tindex = get_local_size(0) * get_group_id(0);
+    Triangle tri;
+//    tri.p1.x = triangles[tindex+0];
+//    tri.p1.y = triangles[tindex+1];
+//    tri.p1.z = triangles[tindex+2];
+//
+//    tri.p2.x = triangles[tindex+3];
+//    tri.p2.y = triangles[tindex+4];
+//    tri.p2.z = triangles[tindex+5];
+//
+//    tri.p3.x = triangles[tindex+6];
+//    tri.p3.y = triangles[tindex+7];
+//    tri.p3.z = triangles[tindex+8];
+    tri.p1.x = 0.0f;
+    tri.p1.y = 1.0f;
+    tri.p1.z = 1.0f;
+
+    tri.p2.x = 1.0f;
+    tri.p2.y = -1.0f;
+    tri.p2.z = 1.0f;
+
+    tri.p3.x = -1.0f;
+    tri.p3.y = -1.0f;
+    tri.p3.z = 1.0f;
+
+    int rindex = get_local_size(1) * get_group_id(1);
+    Ray ray;
+//    ray.start.x = rays[rindex+0];
+//    ray.start.y = rays[rindex+1];
+//    ray.start.z = rays[rindex+2];
+//    ray.dir.x = rays[rindex+3];
+//    ray.dir.y = rays[rindex+4];
+//    ray.dir.z = rays[rindex+5];
+    ray.start.x = 0.0f;
+    ray.start.y = 0.0f;
+    ray.start.z = 0.0f;
+    ray.dir.x = 0.0f;
+    ray.dir.y = 0.0f;
+    ray.dir.z = 1.0f;
+
+    float u;
+    float v;
+    float coll = testCollide(tri,ray, &u, &v);
+    results[get_group_id(1)] = u;
+//    results[tindex+0] = triangles[tindex+0];
+//    results[tindex+1] = triangles[tindex+1];
+//    results[tindex+2] = triangles[tindex+2];
+//    results[tindex+3] = triangles[tindex+3];
+//    results[tindex+4] = triangles[tindex+4];
+//    results[tindex+5] = triangles[tindex+5];
+//    results[tindex+6] = triangles[tindex+6];
+//    results[tindex+7] = triangles[tindex+7];
+//    results[tindex+8] = triangles[tindex+8];
+
+//    results[rindex+0] = rays[rindex+0];
+//    results[rindex+1] = rays[rindex+1];
+//    results[rindex+2] = rays[rindex+2];
+//    results[rindex+3] = rays[rindex+3];
+//    results[rindex+4] = rays[rindex+4];
+//    results[rindex+5] = rays[rindex+5];
 }
