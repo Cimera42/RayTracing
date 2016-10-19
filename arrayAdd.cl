@@ -69,7 +69,6 @@ float testCollide(Triangle inT, Ray inR, float *inU, float *inV)
     if(t > EPSILON)
     {
         *inU = u;
-        *inU = v;
         *inV = v;
         return t;
     }
@@ -121,7 +120,7 @@ __kernel void sampleRays(__global const float* triangles, __global const float* 
     float u;
     float v;
     float coll = testCollide(tri,ray, &u, &v);
-    results[get_group_id(1)] = u;
+    results[get_group_id(1)] = v;
 //    results[tindex+0] = triangles[tindex+0];
 //    results[tindex+1] = triangles[tindex+1];
 //    results[tindex+2] = triangles[tindex+2];
