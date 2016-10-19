@@ -185,13 +185,13 @@ int main()
     cl_kernel kernel = clCreateKernel(program, "sampleRays", &error);
     CheckError(error);
 
-    cl_command_queue command_queue = clCreateCommandQueue(context, deviceIds[0], 0, &error);
+    cl_command_queue command_queue = clCreateCommandQueueWithProperties(context, deviceIds[0], 0, &error);
 
     std::vector<Triangle> tris;
     tris.push_back(Triangle(glm::vec3(0,1,1),glm::vec3(1,-1,1),glm::vec3(-1,-1,1)));
-    //tris.push_back(Triangle(glm::vec3(-1,1,2),glm::vec3(1,1,2),glm::vec3(-1,0.5,2)));
+    tris.push_back(Triangle(glm::vec3(-1,1,2),glm::vec3(1,1,2),glm::vec3(-1,0.5,2)));
     std::vector<float> triData;
-    for(int i = 0; i < tris.size(); i++)
+    for(unsigned int i = 0; i < tris.size(); i++)
     {
         std::vector<float> data = tris[i].toData();
         triData.insert(triData.end(), data.begin(), data.end());
@@ -204,8 +204,8 @@ int main()
     {
         for(int j = 0; j < imgSize; j++)
         {
-            float pX = (float)j/imgSize*10-5;
-            float pY = (float)i/imgSize*10-5;
+            float pX = (float)j/imgSize*2-1;
+            float pY = -(float)i/imgSize*2+1;
             glm::vec3 p = /*-glm::normalize(*/glm::vec3(pX,pY,0)/*)*/;
             Ray ray = Ray(p,glm::vec3(0,0,1));
             rays.push_back(ray);
@@ -219,12 +219,21 @@ int main()
     CheckError(error);
     cl_mem memRays = clCreateBuffer(context, CL_MEM_READ_WRITE, rayData.size() * sizeof(float), NULL, &error);
     CheckError(error);
-    cl_mem memResults = clCreateBuffer(context, CL_MEM_READ_WRITE, imgSize*imgSize * sizeof(float), NULL, &error);
+    cl_mem memResults = clCreateBuffer(context, CL_MEM_READ_WRITE, imgSize*imgSize*3 * sizeof(float), NULL, &error);
     CheckError(error);
 
     error = clEnqueueWriteBuffer(command_queue, memTriangles, CL_TRUE, 0, triData.size() * sizeof(float), triData.data(), 0, NULL, NULL);
     CheckError(error);
     error = clEnqueueWriteBuffer(command_queue, memRays, CL_TRUE, 0, rayData.size() * sizeof(float), rayData.data(), 0, NULL, NULL);
+    CheckError(error);
+    std::vector<float> defaultResults(imgSize*imgSize*3);
+    for(int i = 0; i < imgSize*imgSize; i++)
+    {
+        defaultResults[i*3+0] = 100.0f;
+        defaultResults[i*3+1] = 0.0f;
+        defaultResults[i*3+2] = 0.0f;
+    }
+    error = clEnqueueWriteBuffer(command_queue, memResults, CL_TRUE, 0, defaultResults.size() * sizeof(float), defaultResults.data(), 0, NULL, NULL);
     CheckError(error);
 
     error = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void *)&memTriangles);
@@ -234,27 +243,25 @@ int main()
     error = clSetKernelArg(kernel, 2, sizeof(cl_mem), (void *)&memResults);
     CheckError(error);
 
-    error = clEnqueueTask(command_queue, kernel, 0, NULL,NULL);
-    CheckError(error);
-    std::size_t offsets[] = {0,0};
-    std::size_t sizes[] = {triData.size(), rayData.size()};
-    std::size_t step[] = {9,6};
-    error = clEnqueueNDRangeKernel(command_queue, kernel, 2, offsets, sizes, step,
+    std::size_t offsets[] = {0,0,0};
+    std::size_t sizes[] = {triData.size(), rayData.size(), (size_t)imgSize*imgSize*3};
+    std::size_t step[] = {9,6,3};
+    error = clEnqueueNDRangeKernel(command_queue, kernel, 3, offsets, sizes, step,
                                    0, NULL, NULL);
     CheckError(error);
 
-    float results[imgSize*imgSize];
+    float results[imgSize*imgSize*3];
     error = clEnqueueReadBuffer(command_queue, memResults, CL_TRUE, 0,
-                                imgSize*imgSize * sizeof(float), results, 0, NULL, NULL);
+                                imgSize*imgSize*3 * sizeof(float), results, 0, NULL, NULL);
 
     std::vector<char> d(imgSize*imgSize*3);
     for(int i = 0; i < imgSize*imgSize; i++)
     {
-        if(results[i] > 0)
+        if(results[i*3] != 100.0f && results[i*3] > 0)
         {
-            d[i*3+0] = 255*results[i];
-            d[i*3+1] = 255*results[i];
-            d[i*3+2] = 255*results[i];
+            d[i*3+0] = 255*results[i*3+1];
+            d[i*3+1] = 255*(1-results[i*3+1]-results[i*3+2]);
+            d[i*3+2] = 255*results[i*3+2];
         }
         else
         {
